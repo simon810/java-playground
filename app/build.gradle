@@ -22,9 +22,23 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
+
+
 }
 
 application {
     // Define the main class for the application.
+
     mainClass = 'two.App'
 }
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'two.App'
+        )
+    }
+}
+
+
